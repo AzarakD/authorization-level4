@@ -4,6 +4,7 @@ export interface IUser {
   id: number;
   name: string;
   email: string;
+  role: UserRole;
 }
 
 export interface IAuthFormData extends Pick<IUser, "email"> {

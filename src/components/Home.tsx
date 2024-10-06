@@ -1,24 +1,23 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 
 import authService from "@/services/auth.service";
+import { useProfile } from "@/hooks/useProfile";
 import { CardItem } from "./CardItem";
+import { PublicRoutes } from "@/constants";
 
 export const Home = () => {
   const { push } = useRouter();
 
-  const { data, isLoading } = useQuery({
-    queryKey: ["profile"],
-    queryFn: () => authService.getProfile(),
-  });
+  const { user, isLoading } = useProfile();
 
   const { mutate: mutateLogout, isPending: isLogoutPending } = useMutation({
     mutationKey: ["logout"],
     mutationFn: () => authService.logout(),
     onSuccess: () => {
-      push("/login");
+      push(PublicRoutes.LOGIN);
     },
   });
 
@@ -29,7 +28,7 @@ export const Home = () => {
           AUTH
         </div>
 
-        {data?.data && (
+        {user && (
           <button onClick={() => mutateLogout()} disabled={isLogoutPending}>
             Logout
           </button>
@@ -42,12 +41,12 @@ export const Home = () => {
 
       {isLoading ? (
         <div>Loading...</div>
-      ) : data?.data ? (
+      ) : user.name && user.email ? (
         <CardItem
-          content={data.data.name}
-          title={data.data.email}
+          content={user.name}
+          title={user.email}
           path="/profile"
-          key={data.data.id}
+          key={user.id}
         />
       ) : (
         <CardItem

@@ -62,6 +62,10 @@ class AuthService {
   async getProfile() {
     return axiosPrivate.get<IUser>(`/auth/profile`);
   }
+
+  async getUsers() {
+    return axiosPrivate.get<IUser[]>(`/auth/users`);
+  }
 }
 
 export default new AuthService();
