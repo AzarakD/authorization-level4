@@ -3,13 +3,14 @@ import Link from "next/link";
 interface ICardItem {
   title: string;
   content: string;
+  path: string;
 }
 
-export function CardItem({ content, title }: ICardItem) {
+export function CardItem({ content, title, path }: ICardItem) {
   return (
     <div className="mb-32 grid text-center lg:max-w-5xl lg:mb-0 lg:grid-cols-1">
       <Link
-        href="/login"
+        href={path}
         className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
       >
         <h2 className={`mb-3 text-2xl font-semibold`}>{title}</h2>

@@ -46,10 +46,15 @@ export const Home = () => {
         <CardItem
           content={data.data.name}
           title={data.data.email}
+          path="/profile"
           key={data.data.id}
         />
       ) : (
-        <CardItem content="Failed to login. Try again later." title="Login" />
+        <CardItem
+          content="Failed to login. Try again later."
+          title="Login"
+          path="/login"
+        />
       )}
     </main>
   );
