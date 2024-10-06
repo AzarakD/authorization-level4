@@ -5,3 +5,17 @@ export enum EnumTokens {
   "ACCESS_TOKEN" = "accessToken",
   "REFRESH_TOKEN" = "refreshToken",
 }
+
+export enum PublicRoutes {
+  "HOME" = "/",
+  "LOGIN" = "/login",
+}
+
+export enum AdminRoutes {
+  "HOME" = "/admin",
+}
+
+export enum UserRole {
+  "User" = "USER",
+  "Admin" = "ADMIN",
+}
